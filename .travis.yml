@@ -10,6 +10,7 @@ before_script:
   # yarn install is like npm install
    - yarn install
    - yarn add bower
+   - yarn add pulp
 
 script:
   - bower install
