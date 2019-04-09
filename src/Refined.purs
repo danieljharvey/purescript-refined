@@ -144,6 +144,7 @@ unrefine (Refined x) = x
 
 ---
 
+-- | A 'Predicate' for which everything is valid
 data IdPred
 
 instance predicateIdPred 
@@ -153,6 +154,7 @@ instance predicateIdPred
 
 ---
 
+-- | A 'Predicate' ensuring that both given Predicates are valid
 data And l r
 
 instance predicateAnd 
@@ -172,6 +174,7 @@ instance predicateAnd
 
 ---
 
+-- | A 'Predicate' ensuring that one of two given Predicates is valid 
 data Or l r
 
 instance predicateOr 
@@ -189,6 +192,7 @@ instance predicateOr
 
 ---
 
+-- | A 'Predicate' ensuring that the length of a foldable is equal to a given int
 data SizeEqualTo a
 
 instance predicateSizeEqualTo 
@@ -204,6 +208,7 @@ instance predicateSizeEqualTo
 
 ---
 
+-- | A 'Predicate' ensuring that the length of a foldable is greater than a given int
 data SizeGreaterThan a
 
 instance predicateSizeGreaterThan 
@@ -219,6 +224,7 @@ instance predicateSizeGreaterThan
 
 ---
 
+-- | A 'Predicate' ensuring that the length of a foldable is less than a given int
 data SizeLessThan a
 
 instance predicateSizeLessThan 
@@ -234,6 +240,7 @@ instance predicateSizeLessThan
 
 ---
 
+-- | A 'Predicate' ensuring that the opposite of another Predicate passes
 data Not a
 
 instance predicateNot 
@@ -246,6 +253,7 @@ instance predicateNot
 
 ---
 
+-- | A 'Predicate' ensuring that the value is less than a given int
 data LessThan n
 
 instance predicateLessThan 
@@ -261,6 +269,7 @@ instance predicateLessThan
 
 ---
 
+-- | A 'Predicate' ensuring that the value is greater than a given int
 data GreaterThan n
 
 instance predicateGreaterThan 
@@ -277,6 +286,7 @@ instance predicateGreaterThan
 
 ---
 
+-- | A 'Predicate' ensuring that the value is equal to or greater than a given int
 data From n
 
 instance predicateFrom 
@@ -292,6 +302,7 @@ instance predicateFrom
 
 ---
 
+-- | A 'Predicate' ensuring that the value is up and including a given int
 data To n
 
 instance predicateTo 
@@ -307,6 +318,7 @@ instance predicateTo
 
 ---
 
+-- | A 'Predicate' ensuring that the value is between two given ints (inclusive)
 data FromTo m n
 
 instance predicateFromTo 
@@ -324,6 +336,7 @@ instance predicateFromTo
 
 ---
 
+-- | A 'Predicate' ensuring that the value is equal to a given int
 data EqualTo n
 
 instance predicateEqualTo 
@@ -339,6 +352,7 @@ instance predicateEqualTo
 
 ---
 
+-- | A 'Predicate' ensuring that the value is not equal to a given int
 data NotEqualTo n
 
 instance predicateNotEqualTo 
