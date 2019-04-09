@@ -9,7 +9,7 @@ before_script:
    - npm install -g yarn
   # yarn install is like npm install
    - yarn install
-   - yarn install bower
+   - yarn add bower
 
 script:
   - bower install
