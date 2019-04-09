@@ -1,0 +1,17 @@
+sudo: required
+dist: trusty
+language: node
+
+before_script:
+  # install v6.x of nodejs
+   - nvm install 10.11
+  #install yarn globally
+   - npm install -g yarn
+  # yarn install is like npm install
+   - yarn install
+   - yarn install bower
+
+script:
+  - bower install
+  - pulp build
+  - pulp test
