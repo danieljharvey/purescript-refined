@@ -1,0 +1,21 @@
+{
+  "name": "purescript-refined",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-prelude": "^4.1.0",
+    "purescript-console": "^4.2.0",
+    "purescript-effect": "^2.0.1",
+    "purescript-typelevel": "5.0.0",
+    "purescript-generics-rep": "6.1.1",
+    "purescript-argonaut": "6.0.0"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^4.0.0",
+    "purescript-test-unit": "15.0.0"
+  }
+}
