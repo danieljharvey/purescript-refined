@@ -11,6 +11,7 @@ before_script:
    - yarn install
    - yarn add bower
    - yarn add pulp
+   - yarn add purescript
 
 script:
   - bower install
