@@ -1,6 +1,10 @@
 {
   "name": "purescript-refined",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danieljharvey/purescript-refined.git"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
