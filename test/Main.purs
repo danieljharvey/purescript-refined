@@ -2,7 +2,7 @@ module Test.Main where
 
 import Prelude (Unit, discard, negate, (<$>), (<<<), (==))
 import Effect (Effect)
-import Data.Either (Either(..), isRight, isLeft)
+import Data.Either (Either(..), isLeft)
 import Data.Maybe (Maybe(..))
 import Control.Monad.Free (Free)
 import Test.Unit (suite, test, TestF)
