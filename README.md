@@ -22,3 +22,5 @@ diceRollToInt = unrefine
 ```
 
 This package also contains `EncodeJson` and `DecodeJson` instances for Argonaut so that JSON data can be validated.
+
+Documentation can be found on [Pursuit](https://pursuit.purescript.org/packages/purescript-refined/0.1.2)
