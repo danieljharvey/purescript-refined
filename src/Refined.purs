@@ -58,7 +58,6 @@ instance boundedRefinedIdPred
     top = top
     bottom = bottom 
 
--- this does not work!
 -- | create an Arbitrary instance by randomly throwing values against the wall
 -- | until something sticks
 instance arbitraryRefined 
