@@ -17,7 +17,6 @@ GreaterThan, IdPred, LessThan, Negative, NonEmpty, NonNegative, NonZero, Not,
 import Prelude (class Eq, class Show, bind, show, (<$>), (<<<))
 import Data.Typelevel.Undefined (undefined)
 import Data.Bifunctor (lmap)
-import Data.Bounded (class Bounded, bottom, top)
 import Data.Argonaut (class EncodeJson)
 import Data.Argonaut.Decode.Class (class DecodeJson, decodeJson)
 import Data.Either (Either, isRight)
@@ -51,12 +50,6 @@ instance decodeJsonRefined
 -- | is inside
 derive newtype instance encodeJsonRefined 
   :: (EncodeJson x) => EncodeJson (Refined p x)
-
-instance boundedRefinedIdPred 
-  :: (Bounded x, Predicate IdPred x) 
-  => Bounded (Refined IdPred x) where
-    top = top
-    bottom = bottom 
 
 -- | create an Arbitrary instance by randomly throwing values against the wall
 -- | until something sticks
