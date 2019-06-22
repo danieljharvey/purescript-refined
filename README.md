@@ -21,6 +21,6 @@ diceRollToInt :: DiceRoll -> Int
 diceRollToInt = unrefine
 ```
 
-This package also contains `EncodeJson` and `DecodeJson` instances for Argonaut so that JSON data can be validated.
+This package also contains `EncodeJson` and `DecodeJson` instances for Argonaut so that JSON data can be validated, and `Arbitrary` instances for use with QuickCheck.
 
 Documentation can be found on [Pursuit](https://pursuit.purescript.org/packages/purescript-refined/0.1.2)
