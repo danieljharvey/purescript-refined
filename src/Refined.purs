@@ -18,7 +18,7 @@ import Prelude (class Eq, class Show, bind, show, (<$>), (<<<))
 import Data.Typelevel.Undefined (undefined)
 import Data.Bifunctor (lmap)
 import Data.Argonaut (class EncodeJson)
-import Data.Argonaut.Decode.Class (class DecodeJson, decodeJson)
+import Data.Argonaut.Decode (class DecodeJson, decodeJson, JsonDecodeError(..))
 import Data.Either (Either, isRight)
 import Data.Generic.Rep (class Generic)
 import Data.Ord (class Ord)
@@ -44,7 +44,7 @@ instance decodeJsonRefined
   => DecodeJson (Refined p x) where
   decodeJson a = do
      val <- decodeJson a
-     (refineStr val :: Either String (Refined p x))
+     (refineJson val :: Either JsonDecodeError (Refined p x))
 
 -- | for encoding we just want to strip away the outside layer and use whatever
 -- | is inside
@@ -63,12 +63,12 @@ instance arbitraryRefined
 
 
 -- used by decode json for it's errors
-refineStr 
+refineJson 
   :: forall p x. (Predicate p x)
   => (Show x) 
   => x 
-  -> Either String (Refined p x)
-refineStr x = lmap show (refine x)
+  -> Either JsonDecodeError (Refined p x)
+refineJson x = lmap (TypeMismatch <<< show) (refine x)
 
 -- the regular way in which one would turn a value into a Refined value
 refine 

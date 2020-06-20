@@ -18,7 +18,7 @@
     "purescript-typelevel": "^5.0.0",
     "purescript-typelevel-prelude": "^5.0.0",
     "purescript-generics-rep": "6.1.1",
-    "purescript-argonaut": "6.0.0",
+    "purescript-argonaut": "7.0.0",
     "purescript-quickcheck": "^6.1.0"
   },
   "devDependencies": {
