@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install pulp bower
-    - run: npm run bower install
-    - run: npm run pulp build
-    - run: npm run pulp test
+    - run: npm install -g pulp bower purescript
+    - run: bower install
+    - run: pulp build
+    - run: pulp test
