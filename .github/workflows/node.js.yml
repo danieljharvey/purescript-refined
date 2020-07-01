@@ -21,6 +21,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install pulp bower
-    - run: bower install
-    - run: pulp build
-    - run: pulp test
+    - run: npm run bower install
+    - run: npm run pulp build
+    - run: npm run pulp test
