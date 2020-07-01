@@ -2,32 +2,31 @@ module Test.Main where
 
 import Prelude
 import Effect (Effect)
-import Effect.Class
-import Data.Array
-import Data.Either
-import Data.Maybe
+import Effect.Class (liftEffect)
+import Data.Either (Either(..), isLeft, isRight)
+import Data.Maybe (Maybe(..))
 import Control.Monad.Free (Free)
-import Control.Monad.State
 import Test.Unit (suite, test, TestF)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
-import Test.QuickCheck
-import Test.QuickCheck.Gen
+import Test.QuickCheck (arbitrary)
+import Test.QuickCheck.Gen (Gen, randomSample)
 import Data.Typelevel.Num.Reps (D1, D9)
 import Data.Typelevel.Undefined (undefined)
-import Data.Traversable
+import Data.Traversable (traverse_)
 import Data.Argonaut.Decode.Class (decodeJson)
 import Data.Argonaut.Encode.Class (encodeJson)
 import Data.Argonaut.Core (fromNumber, fromString, toNumber)
+import Data.Argonaut.Decode (JsonDecodeError)
 
-import Data.Refined
+import Data.Refined (And, EqualTo, From, GreaterThan, IdPred, LessThan, Not, Or, Positive, Refined(..), RefinedError(..), These(..), To, refine, unrefine, unsafeRefine, validate)
 
 type TestDecodeShape
   = { idPred   :: Refined IdPred Number
     , from    :: Refined (From D9) Number
     }
 
-decodeTestShape :: String -> Either String TestDecodeShape
+decodeTestShape :: String -> Either JsonDecodeError TestDecodeShape
 decodeTestShape = decodeJson <<< fromString
 
 main :: Effect Unit
@@ -118,19 +117,19 @@ tests = do
 
   suite "Json decoding refined" do
      test "Decoding anything works" do
-       let ans = (decodeJson (fromString "hello") :: Either String String)
+       let ans = (decodeJson (fromString "hello") :: Either JsonDecodeError String)
        Assert.equal (ans) (Right "hello")
 
      test "Works with IdPred" do
-       let ans = (decodeJson (fromNumber 8.0) :: Either String (Refined IdPred Number))
+       let ans = (decodeJson (fromNumber 8.0) :: Either JsonDecodeError (Refined IdPred Number))
        Assert.equal (Right 8.0) (unrefine <$> ans)
 
      test "From D9 fails" do
-       let ans = (decodeJson (fromNumber 8.0) :: Either String (Refined (From D9) Number))
+       let ans = (decodeJson (fromNumber 8.0) :: Either JsonDecodeError (Refined (From D9) Number))
        Assert.assert "Should fail the predicate" (isLeft ans)    
 
      test "From D9 succeeds" do
-       let ans = (decodeJson (fromNumber 10.0) :: Either String (Refined (From D9) Number))
+       let ans = (decodeJson (fromNumber 10.0) :: Either JsonDecodeError (Refined (From D9) Number))
        Assert.equal (Right 10.0) (unrefine <$> ans)
 
   suite "Json encoding Refined" do
@@ -143,14 +142,14 @@ tests = do
         let original = { idPred: (unsafeRefine 1.0  :: Refined IdPred Number)
                        , from : (unsafeRefine 10.0 :: Refined (From D9) Number)
                        }
-        let decoded = (decodeJson (encodeJson original) :: Either String TestDecodeShape)
+        let decoded = (decodeJson (encodeJson original) :: Either JsonDecodeError TestDecodeShape)
         Assert.equal decoded (Right original)
 
      test "Decoding broken values does not work" do
         let original = { idPred: (unsafeRefine 1.0  :: Refined IdPred Number)
                        , from : (unsafeRefine 1.0 :: Refined (From D9) Number)
                        }
-        let decoded = (decodeJson (encodeJson original) :: Either String TestDecodeShape)
+        let decoded = (decodeJson (encodeJson original) :: Either JsonDecodeError TestDecodeShape)
         Assert.assert "Should not be able to decode this as invalid" (isLeft decoded)
 
   suite "Generate Arbitrary instances" do
