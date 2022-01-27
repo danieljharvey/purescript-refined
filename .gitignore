@@ -7,3 +7,6 @@
 /.psc*
 /.purs*
 /.psa*
+
+.spago
+.direnv
