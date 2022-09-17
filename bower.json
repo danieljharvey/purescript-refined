@@ -1,31 +1,29 @@
 {
-  "name": "purescript-refined",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/danieljharvey/purescript-refined.git"
-  },
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "output"
-  ],
-  "dependencies": {
-    "purescript-prelude": "^4.1.1",
-    "purescript-console": "^4.2.0",
-    "purescript-effect": "^2.0.1",
-    "purescript-typelevel": "^5.0.0",
-    "purescript-typelevel-prelude": "^5.0.0",
-    "purescript-generics-rep": "6.1.1",
-    "purescript-argonaut": "7.0.0",
-    "purescript-quickcheck": "^6.1.0"
-  },
-  "devDependencies": {
-    "purescript-psci-support": "^4.0.0",
-    "purescript-test-unit": "15.0.0"
-  },
-  "resolutions": {
-    "purescript-typelevel-prelude": "^5.0.0"
-  }
+    "name": "purescript-refined",
+    "license": [
+        "MIT"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/danieljharvey/purescript-refined.git"
+    },
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "output"
+    ],
+    "dependencies": {
+        "purescript-argonaut": "^v8.0.0",
+        "purescript-console": "^v5.0.0",
+        "purescript-effect": "^v3.0.0",
+        "purescript-foreign": "^v6.0.1",
+        "purescript-foreign-generic": "^v11.0.0",
+        "purescript-prelude": "^v5.0.1",
+        "purescript-psci-support": "^v5.0.0",
+        "purescript-quickcheck": "^v7.1.0",
+        "purescript-test-unit": "^v16.0.0",
+        "purescript-typelevel": "^v6.0.0",
+        "purescript-typelevel-prelude": "^v6.0.0"
+    }
 }
